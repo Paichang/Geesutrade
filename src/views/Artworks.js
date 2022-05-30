@@ -1,68 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import { Link } from "react-router-dom";
 
-const products = [
-  {
-    id: 1,
-    name: 'Product Name',
-    href: '#',
-    price: '$9.99',
-    imageSrc: 'https://images.unsplash.com/photo-1555982105-d25af4182e4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80',
-  },
-  {
-    id: 2,
-    name: 'Product Name',
-    href: '#',
-    price: '$10.99',
-    imageSrc: 'https://images.unsplash.com/photo-1508423134147-addf71308178?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80',
-  },
-  {
-    id: 3,
-    name: 'Product Name',
-    href: '#',
-    price: '$12.99',
-    imageSrc: 'https://images.unsplash.com/photo-1449247709967-d4461a6a6103?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80',
-  },
-  {
-    id: 4,
-    name: 'Product Name',
-    href: '#',
-    price: '$9.99',
-    imageSrc: 'https://images.unsplash.com/reserve/LJIZlzHgQ7WPSh5KVTCB_Typewriter.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80',
-  },
-  {
-    id: 5,
-    name: 'Product Name',
-    href: '#',
-    price: '$6.99',
-    imageSrc: 'https://images.unsplash.com/photo-1467949576168-6ce8e2df4e13?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80',
-  },
-  {
-    id: 6,
-    name: 'Product Name',
-    href: '#',
-    price: '$10.99',
-    imageSrc: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80',
-  },
-  {
-    id: 7,
-    name: 'Product Name',
-    href: '#',
-    price: '$22.99',
-    imageSrc: 'https://images.unsplash.com/photo-1550837368-6594235de85c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80',
-  },
-  {
-    id: 8,
-    name: 'Product Name',
-    href: '#',
-    price: '$19.99',
-    imageSrc: 'https://images.unsplash.com/photo-1551431009-a802eeec77b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=400&q=80',
-  },
-];
+export default function Artworks() {
+  const [products, setProducts] = useState([
+    {
+      id: 1,
+      title: "",
+      artistName: "",
+      type: "",
+      medium: "",
+      style: "",
+      askingPrice: "",
+      sold: false,
+      image: "",
+      dateShow: "",
+      createdAt: "",
+      updatedAt: ""
+    }
+  ]);
 
-export default function Shop() {
+  useEffect(() => {
+    getAllArtworks();
+  }, []);
+
+
+  const getAllArtworks = () => {
+    fetch('http://127.0.0.1:8080/api/artworks/all')
+      .then(res => res.json())
+      .then(res => {
+        setProducts(res.message);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   return (
     <>
       <Navbar transparent />
@@ -122,18 +96,24 @@ export default function Shop() {
               <div className="w-full lg:w-12/12 px-4 -mt-12">
                 <div className="flex flex-wrap pt-48">
                   {products.map((product) => (
-                    <div key={product.id} href={product.href} className="w-full lg:w-4/12 px-4 mb-2">
+                    <div key={product.id} className="w-full lg:w-4/12 px-4 mb-2">
                       <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words w-full shadow-lg rounded-lg ease-linear transition-all duration-150">
                         <img
                           className="align-middle border-none h-48 w-96 rounded-lg"
-                          src={product.imageSrc}
+                          src={product.image}
                         />
                       </div>
-                      <div className="pt-3 flex items-center justify-between">
-                        <h5 className="text-xl font-semibold pt-6 pb-4">
-                          {product.name}
+                      <div className="pt-2 flex items-center justify-between pb-2">
+                        <h5 className="text-2xl font-semibold">
+                          {product.title}
                         </h5>
-                        <p className="pt-1 text-gray-900">{product.price}</p>
+                        <p className="pt-1 text-gray-900">{product.askingPrice}</p>
+                      </div>
+                      <div className="pt-2 flex items-center justify-between pb-2">
+                        <h5 className="text-xl font-semibold">
+                          {product.artistName}
+                        </h5>
+                        <p className="pt-1 text-gray-900">{product.type}, {product.medium}, {product.style}</p>
                       </div>
                     </div>
                   ))}

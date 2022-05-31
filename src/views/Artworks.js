@@ -18,6 +18,48 @@ export default function Artworks() {
       dateShow: "",
       createdAt: "",
       updatedAt: ""
+    },
+    {
+      id: 1,
+      title: 'The Starry Night',
+      artistName: "Tweizh",
+      type: "type",
+      medium: "medium",
+      style: "style",
+      askingPrice: '$5.2M',
+      sold: false,
+      image: 'https://images.unsplash.com/photo-1555982105-d25af4182e4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80',
+      dateShow: new Date().toISOString(),
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    },
+    {
+      id: 2,
+      title: 'Mona Lisa',
+      artistName: "PaiChang",
+      type: "ABC",
+      medium: "ABC",
+      style: "ABC",
+      askingPrice: '$5.2M',
+      sold: false,
+      image: 'https://images.unsplash.com/photo-1508423134147-addf71308178?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80',
+      dateShow: new Date().toISOString(),
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    },
+    {
+      id: 3,
+      title: 'Product Name',
+      artistName: "ABC",
+      type: "ABC",
+      medium: "ABC",
+      style: "ABC",
+      askingPrice: '$5.2M',
+      sold: false,
+      image: 'https://images.unsplash.com/photo-1449247709967-d4461a6a6103?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80',
+      dateShow: new Date().toISOString(),
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
     }
   ]);
 
@@ -96,26 +138,27 @@ export default function Artworks() {
               <div className="w-full lg:w-12/12 px-4 -mt-12">
                 <div className="flex flex-wrap pt-48">
                   {products.map((product) => (
-                    <div key={product.id} className="w-full lg:w-4/12 px-4 mb-2">
-                      <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words w-full shadow-lg rounded-lg ease-linear transition-all duration-150">
-                        <img
-                          className="align-middle border-none h-48 w-96 rounded-lg"
-                          src={product.image}
-                        />
-                      </div>
-                      <div className="pt-2 flex items-center justify-between pb-2">
-                        <h5 className="text-2xl font-semibold">
-                          {product.title}
-                        </h5>
-                        <p className="pt-1 text-gray-900">{product.askingPrice}</p>
-                      </div>
-                      <div className="pt-2 flex items-center justify-between pb-2">
-                        <h5 className="text-xl font-semibold">
-                          {product.artistName}
-                        </h5>
-                        <p className="pt-1 text-gray-900">{product.type}, {product.medium}, {product.style}</p>
-                      </div>
-                    </div>
+                    product.title ?
+                      <div key={product.id} className="w-full lg:w-4/12 px-4 mb-2">
+                        <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words w-full shadow-lg rounded-lg ease-linear transition-all duration-150">
+                          <img
+                            className="align-middle border-none h-48 w-96 rounded-lg"
+                            src={product.image}
+                          />
+                        </div>
+                        <div className="pt-2 flex items-center justify-between pb-2">
+                          <h5 className="text-2xl font-semibold">
+                            {product.title}
+                          </h5>
+                          <p className="pt-1 text-gray-900">{product.askingPrice}</p>
+                        </div>
+                        <div className="pt-2 flex items-center justify-between pb-2">
+                          <h5 className="text-xl font-semibold">
+                            {product.artistName}
+                          </h5>
+                          <p className="pt-1 text-gray-900">{product.type}, {product.medium}, {product.style}</p>
+                        </div>
+                      </div> : ''
                   ))}
                 </div>
               </div>

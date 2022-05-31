@@ -8,14 +8,13 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [roles, setRoles] = useState(["user"]);
-  const [message, setMessage] = useState("");
 
   let history = useHistory();
 
   let handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let res = await fetch("http://127.0.0.1:8080/api/auth/signup", {
+      await fetch("http://127.0.0.1:8080/api/auth/signup", {
         headers: { 'Content-Type': 'application/json' },
         method: "POST",
         body: JSON.stringify({
@@ -26,19 +25,17 @@ export default function Register() {
           password: password,
           roles: roles
         }),
-      });
-
-      if (res.status === 200) {
-        setUsername("");
-        setAddress("");
-        setPhone("");
-        setEmail("");
-        setPassword("");
-        setMessage("User created successfully");
-        history.push("/auth/login");
-      } else {
-        setMessage("Some error occured");
-      }
+      })
+        .then((res) => {
+          if (res.status === 200) {
+            setUsername("");
+            setAddress("");
+            setPhone("");
+            setEmail("");
+            setPassword("");
+            history.push("/auth/login");
+          }
+        });
     } catch (err) {
       console.log(err);
     }

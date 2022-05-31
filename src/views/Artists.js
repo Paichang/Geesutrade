@@ -116,8 +116,14 @@ export default function Artworks() {
                       />
                       <div className="pt-6 text-center">
                         <h5 className="text-xl font-bold">{artist.name}</h5>
-                        <div className="mt-6">
+                        <div className="mt-1">
+                          {artist.address}, {artist.phone}
+                        </div>
+                        <div className="mt-1">
                           {artist.usualType}, {artist.usualMedium}, {artist.usualStyle}
+                        </div>
+                        <div className="mt-1">
+                          ${artist.salesLastYear}, ${artist.salesToDate}
                         </div>
                       </div>
                     </div>

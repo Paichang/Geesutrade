@@ -156,7 +156,7 @@ export default function Artworks() {
                           <h5 className="text-xl font-semibold">
                             {product.artistName}
                           </h5>
-                          <p className="pt-1 text-gray-900">{product.type}, {product.medium}, {product.style}</p>
+                          <p className="pt-1 text-gray-900">{product.type}, {product.medium}, {product.style}, {product.dateShow.split('T')[0].replace(/-/g, '/')}</p>
                         </div>
                       </div> : ''
                   ))}

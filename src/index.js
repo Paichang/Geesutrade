@@ -14,6 +14,7 @@ import Artworks from "views/Artworks.js";
 import Sales from "views/Sales.js";
 import Report from "views/Report.js";
 import Payments from "views/Payments.js";
+import Customers from "views/Customers.js"
 import Index from "views/Index.js";
 
 ReactDOM.render(
@@ -27,6 +28,7 @@ ReactDOM.render(
       <Route path="/sales" exact component={Sales} />
       <Route path="/report" exact component={Report} />
       <Route path="/payments" exact component={Payments} />
+      <Route path="/customers" exact component={Customers} />
       <Route path="/" exact component={Index} />
       {/* add redirect for first page */}
       <Redirect from="*" to="/" />

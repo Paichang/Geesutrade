@@ -2,18 +2,18 @@ import React, { useState, useEffect } from "react";
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/FooterSmall.js";
 
-export default function Payments() {
-  const [payments, setPayments] = useState([]);
+export default function Customers() {
+  const [customers, setCustomers] = useState([]);
 
   useEffect(() => {
-    getAllPayments();
+    getAllCustomers();
   }, []);
 
-  function getAllPayments() {
-    fetch('http://localhost:8080/api/payments/all')
+  function getAllCustomers() {
+    fetch('http://localhost:8080/api/customers/all')
       .then(res => res.json())
       .then(res => {
-        setPayments(res.message);
+        setCustomers(res.message);
       });
   }
 
@@ -39,7 +39,7 @@ export default function Payments() {
               <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
                 <div className="pr-12">
                   <h1 className="text-white font-semibold text-5xl">
-                    Payments
+                    Customers
                   </h1>
                   <p className="mt-4 text-lg text-blueGray-200">
                     Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
@@ -78,47 +78,31 @@ export default function Payments() {
                   <thead>
                     <tr>
                       <th className={"px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"}>
-                        Title
+                        Name
                       </th>
                       <th className={"px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"}>
-                        Artist Name
+                        Address
                       </th>
                       <th className={"px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"}>
-                        Customer Name
+                        Phone
                       </th>
                       <th className={"px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"}>
-                        Type
+                        Bought Last Year
                       </th>
                       <th className={"px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"}>
-                        Medium
-                      </th>
-                      <th className={"px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"}>
-                        Style
-                      </th>
-                      <th className={"px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"}>
-                        Selling Price
-                      </th>
-                      <th className={"px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"}>
-                        Salesperson
-                      </th>
-                      <th className={"px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"}>
-                        Date Sold
+                        Bought This Year
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {payments ? payments.map((payment, idx) => (
-                      payment.salesperson ?
-                        <tr key={payment.id}>
-                          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{payment.title}</td>
-                          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{payment.artistName}</td>
-                          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{payment.type}</td>
-                          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{payment.medium}</td>
-                          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{payment.style}</td>
-                          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{payment.size}</td>
-                          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">${payment.sellingPrice}</td>
-                          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{payment.salesperson}</td>
-                          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{payment.amountRemitted}</td>
+                    {customers ? customers.map((customer, idx) => (
+                      customer.custName ?
+                        <tr key={customer.id}>
+                          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{customer.custName}</td>
+                          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{customer.custAddr}</td>
+                          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{customer.custPhone}</td>
+                          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{customer.boughtLastYear}</td>
+                          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{customer.boughtYearToDate}</td>
                         </tr>
                         : <></>
                     )) : <></>}
